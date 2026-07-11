@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vinci Appraiser | RWA Card Verification RPG</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Playfair+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════ LANDING VIEW ═══ -->
+<div id="landing-view" class="view-container active">
+    <div class="scene-bg" aria-hidden="true"></div>
+    <div class="ambient-bg" aria-hidden="true">
+        <div class="dust-particle" style="--x:8%;--y:15%;--d:3.2s;--s:0.6"></div>
+        <div class="dust-particle" style="--x:92%;--y:22%;--d:4.5s;--s:0.4"></div>
+        <div class="dust-particle" style="--x:18%;--y:68%;--d:2.8s;--s:0.8"></div>
+        <div class="dust-particle" style="--x:85%;--y:75%;--d:5.1s;--s:0.5"></div>
+        <div class="dust-particle" style="--x:50%;--y:8%;--d:3.8s;--s:0.3"></div>
+        <div class="dust-particle" style="--x:30%;--y:90%;--d:4.2s;--s:0.7"></div>
+        <div class="dust-particle" style="--x:70%;--y:45%;--d:3.6s;--s:0.4"></div>
+        <div class="dust-particle" style="--x:42%;--y:55%;--d:5.4s;--s:0.5"></div>
+    </div>
+
+    <div class="landing-page">
+
+        <!-- NAV -->
+        <nav class="lp-nav">
+            <div class="lp-nav-inner">
+                <img src="assets/title.png" alt="Vinci Appraiser" class="lp-nav-logo" />
+                <div class="lp-nav-links">
+                    <a href="#features" class="lp-nav-link">Features</a>
+                    <a href="#how-it-works" class="lp-nav-link">How It Works</a>
+                    <a href="#mechanics" class="lp-nav-link">Mechanics</a>
+                    <a href="#threats" class="lp-nav-link">Threats</a>
+                </div>
+                <button id="start-btn" class="lp-nav-cta">
+                    Play Now <i class="fa-solid fa-play" aria-hidden="true"></i>
+                </button>
+            </div>
+        </nav>
+
+        <!-- HERO -->
+        <section class="lp-hero">
+            <div class="lp-hero-inner">
+                <div class="lp-hero-eyebrow">
+                    <span class="eyebrow-dot"></span>
+                    <span>Renaiss Tech Hackathon S1</span>
+                    <span class="eyebrow-sep">·</span>
+                    <span>RWA Verification Game</span>
+                </div>
+                <img src="assets/title.png" alt="Vinci Appraiser" class="lp-hero-logo" />
+                <p class="lp-hero-tagline">
+                    Explore the town. Fight in the arena. Earn gold.<br>
+                    Buy real cards, <em>inspect them on-chain</em>, and level up.
+                </p>
+                <div class="lp-hero-actions">
+                    <button class="lp-hero-btn-primary" id="hero-play-btn">
+                        <i class="fa-solid fa-play" aria-hidden="true"></i>
+                        Begin Your Run
+                    </button>
+                    <a href="#how-it-works" class="lp-hero-btn-ghost">
+                        How It Works <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <div class="lp-hero-badges">
+                    <div class="hero-badge">
+                        <i class="fa-solid fa-link hb-icon" aria-hidden="true"></i>
+                        <span>On-Chain Provenance</span>
+                    </div>
+                    <div class="hero-badge">
+                        <i class="fa-solid fa-layer-group hb-icon" aria-hidden="true"></i>
+                        <span>Real TCG Cards</span>
+                    </div>
+                    <div class="hero-badge">
+                        <i class="fa-solid fa-crosshairs hb-icon" aria-hidden="true"></i>
+                        <span>Action RPG Combat</span>
+                    </div>
+                    <div class="hero-badge">
+                        <i class="fa-solid fa-magnifying-glass hb-icon" aria-hidden="true"></i>
+                        <span>FMV · SBT · Vault</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Floating deco cards — replaced with character sprites -->
+            <div class="hero-card-deco hero-card-deco-1" aria-hidden="true">
+                <img src="assets/sprite_main/FinalFightStance.png" alt="" class="hero-sprite-deco" />
+            </div>
+            <div class="hero-card-deco hero-card-deco-2" aria-hidden="true">
+                <img src="assets/sprite_shopkeeper/shopkeeper_talk1.png" alt="" class="hero-sprite-deco hero-sprite-shopkeeper" />
+            </div>
+            <div class="hero-card-deco hero-card-deco-3" aria-hidden="true">
+                <img src="assets/sprite_dealer/Dealer_FightIdleStart.png" alt="" class="hero-sprite-deco hero-sprite-flip" />
+            </div>
+        </section>
+
+        <!-- STATS BAR -->
+        <div class="lp-stats-bar">
+            <div class="lp-stats-inner">
+                <div class="lp-stat"><span class="lp-stat-val">5</span><span class="lp-stat-label">Arena Floors</span></div>
+                <div class="lp-stat-div"></div>
+                <div class="lp-stat"><span class="lp-stat-val">5</span><span class="lp-stat-label">Enemy Classes</span></div>
+                <div class="lp-stat-div"></div>
+                <div class="lp-stat"><span class="lp-stat-val">3</span><span class="lp-stat-label">Verification Checks</span></div>
+                <div class="lp-stat-div"></div>
+                <div class="lp-stat"><span class="lp-stat-val">5</span><span class="lp-stat-label">Card Equip Slots</span></div>
+                <div class="lp-stat-div"></div>
+                <div class="lp-stat"><span class="lp-stat-val">~40%</span><span class="lp-stat-label">Cards Are Flagged</span></div>
+            </div>
+        </div>
+
+        <!-- FEATURES -->
+        <section class="lp-section" id="features">
+            <div class="lp-section-inner">
+                <div class="lp-section-header">
+                    <div class="lp-section-eyebrow">Core Features</div>
+                    <h2 class="lp-section-title">Fight. Earn. Inspect. Level Up.</h2>
+                    <p class="lp-section-sub">Explore the town, battle enemies for gold, buy real cards, verify them on-chain, and equip them to get stronger.</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card feature-card-accent">
+                        <div class="fc-icon"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></div>
+                        <h3 class="fc-title">Arena Tower Floors</h3>
+                        <p class="fc-desc">Five arena floors with increasing difficulty. Choose your challenge based on your Power Level. Higher floors = stronger enemies but bigger gold rewards.</p>
+                        <div class="fc-tag">5 Floors · Power-Gated</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="fc-icon"><i class="fa-solid fa-store" aria-hidden="true"></i></div>
+                        <h3 class="fc-title">Live Card Market</h3>
+                        <p class="fc-desc">Real Pokémon TCG cards from the Renaiss marketplace. Grade-based pricing — PSA 10s cost more but give massive stat boosts. Inspect before you buy.</p>
+                        <div class="fc-tag">Live API · Grade-Priced</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="fc-icon"><i class="fa-solid fa-magnifying-glass-chart" aria-hidden="true"></i></div>
+                        <h3 class="fc-title">On-Chain Appraisal</h3>
+                        <p class="fc-desc">Run three verification checks with educational explanations. Learn about FMV oracles, SBT provenance, and multi-sig custody as you play.</p>
+                        <div class="fc-tag">FMV · SBT · Vault · Learn</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="fc-icon"><i class="fa-solid fa-bolt" aria-hidden="true"></i></div>
+                        <h3 class="fc-title">Power Level System</h3>
+                        <p class="fc-desc">Your Power Level rises with equipped cards. See recommended power for each floor. Start weak — get stronger through smart card purchases.</p>
+                        <div class="fc-tag">PWR Rating · Strategic</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="fc-icon"><i class="fa-solid fa-layer-group" aria-hidden="true"></i></div>
+                        <h3 class="fc-title">5 Card Equip Slots</h3>
+                        <p class="fc-desc">Equip up to 5 verified cards. Each boosts HP, ATK, and DEF based on grade. Fake cards debuff your stats. Choose wisely in the appraisal desk.</p>
+                        <div class="fc-tag">+HP · +ATK · +DEF</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="fc-icon"><i class="fa-solid fa-landmark" aria-hidden="true"></i></div>
+                        <h3 class="fc-title">Town Overworld</h3>
+                        <p class="fc-desc">Explore a pixel-art town hub. Walk to the Arena, Card Shop, or your Home. Camera scrolls with you — no loading screens between areas.</p>
+                        <div class="fc-tag">Open World · Seamless</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- HOW IT WORKS -->
+        <section class="lp-section lp-section-dark" id="how-it-works">
+            <div class="lp-section-inner">
+                <div class="lp-section-header">
+                    <div class="lp-section-eyebrow">The Loop</div>
+                    <h2 class="lp-section-title">How a run works</h2>
+                    <p class="lp-section-sub">Explore, fight, earn, verify, equip. Get stronger each cycle.</p>
+                </div>
+                <div class="steps-timeline">
+                    <div class="tl-step">
+                        <div class="tl-num">01</div>
+                        <div class="tl-icon-wrap">
+                            <i class="fa-solid fa-map tl-icon" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="tl-title">Explore Town</h3>
+                        <p class="tl-desc">Walk around the pixel-art town with WASD. Visit the Arena to fight, the Shop to buy cards, or go Home to manage your inventory.</p>
+                        <div class="tl-keys">
+                            <kbd>WASD</kbd> move <kbd>E</kbd> enter building
+                        </div>
+                    </div>
+                    <div class="tl-step">
+                        <div class="tl-num">02</div>
+                        <div class="tl-icon-wrap">
+                            <i class="fa-solid fa-shield-halved tl-icon" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="tl-title">Arena Battle</h3>
+                        <p class="tl-desc">Pick a floor based on your Power Level. Fight waves of enemies in real-time combat. Higher floors drop more gold but hit harder. Die? 10s recovery then try again.</p>
+                        <div class="tl-keys">
+                            <kbd>WASD</kbd> move <kbd>Click</kbd> attack <kbd>Shift</kbd> dodge <kbd>E</kbd> card ability
+                        </div>
+                    </div>
+                    <div class="tl-step">
+                        <div class="tl-num">03</div>
+                        <div class="tl-icon-wrap">
+                            <i class="fa-solid fa-magnifying-glass-chart tl-icon" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="tl-title">Shop &amp; Inspect</h3>
+                        <p class="tl-desc">Browse real cards from the Renaiss marketplace. Inspect each one — run FMV, SBT, and Vault checks. Learn what each result means. Buy or pass.</p>
+                        <div class="tl-checks">
+                            <span class="tlc tlc-ok">FMV Oracle</span>
+                            <span class="tlc tlc-ok">SBT Verify</span>
+                            <span class="tlc tlc-ok">Multi-Sig</span>
+                        </div>
+                    </div>
+                    <div class="tl-step">
+                        <div class="tl-num">04</div>
+                        <div class="tl-icon-wrap">
+                            <i class="fa-solid fa-bolt tl-icon" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="tl-title">Equip &amp; Power Up</h3>
+                        <p class="tl-desc">Equip up to 5 cards at home. Each card boosts your Power Level. Legit cards give full stats, fake cards debuff you. Climb higher arena floors.</p>
+                        <div class="tl-detail">+HP · +ATK · +DEF · Power Level ↑</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MECHANICS -->
+        <section class="lp-section" id="mechanics">
+            <div class="lp-section-inner">
+                <div class="lp-section-header">
+                    <div class="lp-section-eyebrow">Verification System</div>
+                    <h2 class="lp-section-title">Three checks. One verdict.</h2>
+                    <p class="lp-section-sub">Each card carries three data points. Read all three before you judge.</p>
+                </div>
+                <div class="checks-grid">
+                    <div class="check-card">
+                        <div class="chk-header">
+                            <i class="fa-solid fa-chart-line chk-icon" aria-hidden="true"></i>
+                            <span>FMV Oracle</span>
+                        </div>
+                        <p class="chk-desc">Queries the Renaiss price index for the card's Fair Market Value. If the ask price is more than 2.5× the FMV — it's suspect.</p>
+                        <div class="chk-example chk-ok"><i class="fa-solid fa-circle-check"></i> $1,200 FMV — CONFIRMED</div>
+                        <div class="chk-example chk-warn"><i class="fa-solid fa-triangle-exclamation"></i> $12,000 ask / $400 FMV — SUSPECT</div>
+                    </div>
+                    <div class="check-card">
+                        <div class="chk-header">
+                            <i class="fa-solid fa-shield-halved chk-icon" aria-hidden="true"></i>
+                            <span>SBT Provenance</span>
+                        </div>
+                        <p class="chk-desc">Verifies the Soul-Bound Token chain-of-custody. A missing or zeroed owner address means no provenance — reject it.</p>
+                        <div class="chk-example chk-ok"><i class="fa-solid fa-circle-check"></i> 0xAb3…f29 — VERIFIED</div>
+                        <div class="chk-example chk-warn"><i class="fa-solid fa-triangle-exclamation"></i> 0x000…0000 — MISSING</div>
+                    </div>
+                    <div class="check-card">
+                        <div class="chk-header">
+                            <i class="fa-solid fa-vault chk-icon" aria-hidden="true"></i>
+                            <span>Vault Multi-Sig</span>
+                        </div>
+                        <p class="chk-desc">Checks the vault custody threshold. PSA 8+ cards need 3-of-5 signatures. Below 8 or flagged drops to 1-of-5 — insecure.</p>
+                        <div class="chk-example chk-ok"><i class="fa-solid fa-circle-check"></i> 4-of-5 — SECURED</div>
+                        <div class="chk-example chk-warn"><i class="fa-solid fa-triangle-exclamation"></i> 1-of-5 — INSECURE</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- THREATS -->
+        <section class="lp-section lp-section-dark" id="threats">
+            <div class="lp-section-inner">
+                <div class="lp-section-header">
+                    <div class="lp-section-eyebrow">Threat Roster</div>
+                    <h2 class="lp-section-title">Who's after the vault</h2>
+                </div>
+                <div class="enemies-grid">
+                    <div class="enemy-card">
+                        <div class="ec-sprite-wrap">
+                            <img src="assets/sprite_dealer/Dealer_FightIdleStart.png" alt="Counterfeit Dealer" class="ec-sprite" />
+                        </div>
+                        <div class="ec-name">Counterfeit Dealer</div>
+                        <div class="ec-stats"><span>90 HP</span><span>8 ATK</span><span>Chase</span></div>
+                        <div class="ec-desc">Peddles fake graded slabs. Slow but relentless.</div>
+                    </div>
+                    <div class="enemy-card">
+                        <div class="ec-sprite-wrap">
+                            <img src="assets/sprite_rat/Rat_idle.png" alt="Vault Rat" class="ec-sprite" />
+                        </div>
+                        <div class="ec-name">Vault Rat</div>
+                        <div class="ec-stats"><span>55 HP</span><span>12 ATK</span><span>Zigzag</span></div>
+                        <div class="ec-desc">Steals vault signatures. Fast and erratic.</div>
+                    </div>
+                    <div class="enemy-card">
+                        <div class="ec-sprite-wrap">
+                            <img src="assets/sprite_hacker/Hacker_idle.png" alt="Oracle Hacker" class="ec-sprite" />
+                        </div>
+                        <div class="ec-name">Oracle Hacker</div>
+                        <div class="ec-stats"><span>120 HP</span><span>6 ATK</span><span>Strafe + Ranged</span></div>
+                        <div class="ec-desc">Spoofs FMV feeds. Keeps distance and fires data packets.</div>
+                    </div>
+                    <div class="enemy-card">
+                        <div class="ec-sprite-wrap">
+                            <img src="assets/sprite_forger/Forger_idle.png" alt="Slab Forger" class="ec-sprite" />
+                        </div>
+                        <div class="ec-name">Slab Forger</div>
+                        <div class="ec-stats"><span>150 HP</span><span>10 ATK</span><span>Chase + Ranged</span></div>
+                        <div class="ec-desc">Prints counterfeit slabs. Durable and shoots.</div>
+                    </div>
+                    <div class="enemy-card ec-boss">
+                        <div class="ec-sprite-wrap ec-sprite-boss">
+                            <img src="assets/sprite_broker/Broker_idle.png" alt="Shadow Broker" class="ec-sprite" />
+                        </div>
+                        <div class="ec-name">Shadow Broker</div>
+                        <div class="ec-stats"><span>240 HP</span><span>14 ATK</span><span>BOSS</span></div>
+                        <div class="ec-desc">Runs laundering rings. The final wave. Fast shots, high damage.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FINAL CTA -->
+        <section class="lp-cta-section">
+            <div class="lp-cta-inner">
+                <div class="lp-cta-pixel-border" aria-hidden="true"></div>
+                <h2 class="lp-cta-title">Ready to appraise?</h2>
+                <p class="lp-cta-sub">No wallet required. All data simulated for UX demonstration. Built for Renaiss Tech.</p>
+                <button class="lp-cta-btn" id="cta-play-btn">
+                    <i class="fa-solid fa-play" aria-hidden="true"></i>
+                    Start Your Run
+                </button>
+                <div class="lp-cta-note">Fight · Earn gold · Buy cards · Inspect on-chain · Level up</div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="lp-footer">
+            <div class="lp-footer-inner">
+                <img src="assets/title.png" alt="Vinci Appraiser" class="lp-footer-logo" />
+                <span class="lp-footer-copy">Prototype · Renaiss Tech Hackathon S1 · Data simulated for UX demonstration</span>
+            </div>
+        </footer>
+
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ TOWN VIEW ═══ -->
+<div id="town-view" class="view-container hidden">
+    <div class="town-wrap">
+        <canvas id="town-canvas" class="town-canvas"></canvas>
+        <div class="town-hud">
+            <div class="town-gold">
+                <i class="fa-solid fa-coins" aria-hidden="true"></i>
+                <span id="town-gold-val">0 G</span>
+            </div>
+            <div class="town-gold" style="border-color: rgba(102,153,255,0.6); color: #6699ff;">
+                <i class="fa-solid fa-bolt" aria-hidden="true"></i>
+                <span id="town-power-val">PWR 0</span>
+            </div>
+        </div>
+        <div class="town-hint" id="town-hint">Use WASD to move. Walk to a door to enter.</div>
+        <!-- Location labels floating over the canvas -->
+        <div class="town-label town-label-arena" id="lbl-arena">
+            <i class="fa-solid fa-shield-halved"></i> Arena
+        </div>
+        <div class="town-label town-label-shop" id="lbl-shop">
+            <i class="fa-solid fa-store"></i> Shop
+        </div>
+        <div class="town-label town-label-house" id="lbl-house">
+            <i class="fa-solid fa-house"></i> Home
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ BATTLE VIEW ═══ -->
+<div id="battle-view" class="view-container hidden">
+    <div class="scene-bg" aria-hidden="true"></div>
+
+    <header class="game-header">
+        <div class="header-brand">
+            <img src="assets/title.png" alt="Vinci Appraiser" class="header-title-img" />
+        </div>
+        <div class="header-status">
+            <span class="status-dot"></span>
+            <span id="wave-label">Wave 1 / 6</span>
+        </div>
+        <div class="header-score">
+            <i class="fa-solid fa-coins" aria-hidden="true"></i>
+            <span id="battle-gold" class="score-value">0 G</span>
+        </div>
+    </header>
+
+    <div class="battle-layout">
+        <aside class="battle-hud-left">
+            <div class="hud-section">
+                <div class="hud-label"><i class="fa-solid fa-user-tie" aria-hidden="true"></i> Inspector</div>
+                <div class="bar-row">
+                    <span class="bar-label">HP</span>
+                    <div class="bar-track"><div id="player-hp-bar" class="bar-fill" style="width:100%;background:#78C69A"></div></div>
+                    <span id="player-hp-val" class="bar-val">100/100</span>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-label">CD</span>
+                    <div class="bar-track"><div id="player-mp-bar" class="bar-fill" style="width:0%;background:#f0b840"></div></div>
+                    <span id="player-mp-val" class="bar-val">READY</span>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-label">XP</span>
+                    <div class="bar-track"><div id="player-xp-bar" class="bar-fill" style="width:0%;background:#6699ff"></div></div>
+                    <span id="player-xp-val" class="bar-val">Lv.1</span>
+                </div>
+            </div>
+            <div class="hud-section">
+                <div class="hud-label"><i class="fa-solid fa-layer-group" aria-hidden="true"></i> Equipped Cards</div>
+                <div id="equipped-strip" class="equipped-strip">
+                    <span class="eq-empty">No cards equipped</span>
+                </div>
+            </div>
+            <div class="hud-section controls-hint">
+                <div class="hud-label"><i class="fa-solid fa-keyboard" aria-hidden="true"></i> Controls</div>
+                <div class="ctrl-row"><kbd>WASD</kbd> Move</div>
+                <div class="ctrl-row"><kbd>Click</kbd> / <kbd>Space</kbd> Attack</div>
+                <div class="ctrl-row"><kbd>Shift</kbd> Dodge Roll</div>
+                <div class="ctrl-row"><kbd>E</kbd> Card Ability</div>
+            </div>
+            <div id="card-bonuses" class="card-bonuses hidden"></div>
+        </aside>
+
+        <div class="battle-arena-wrap">
+            <canvas id="battle-canvas" class="battle-canvas"></canvas>
+        </div>
+
+        <aside class="battle-hud-right">
+            <div class="hud-section">
+                <div class="hud-label"><i class="fa-solid fa-scroll" aria-hidden="true"></i> Battle Log</div>
+                <div id="battle-log" class="battle-log"></div>
+            </div>
+            <div class="hud-section">
+                <button id="btn-card-ability" class="card-ability-btn" disabled>No Card Equipped</button>
+            </div>
+        </aside>
+    </div>
+
+    <div id="battle-result-overlay" class="result-overlay hidden">
+        <div class="result-inner">
+            <div class="result-icon" id="result-icon">
+                <i class="fa-solid fa-trophy" aria-hidden="true"></i>
+            </div>
+            <div class="result-title" id="result-title">Victory!</div>
+            <div class="result-gold" id="result-gold">0 G earned</div>
+            <div class="result-sub" id="result-sub"></div>
+            <button class="primary-btn" id="btn-to-shop">
+                Back to Town <i class="fa-solid fa-door-open" aria-hidden="true"></i>
+            </button>
+            <button class="primary-btn secondary-btn" id="btn-retry" style="display:none">
+                <i class="fa-solid fa-rotate-right" aria-hidden="true"></i> Try Again
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ SHOP VIEW ═══ -->
+<div id="shop-view" class="view-container hidden">
+    <div class="scene-bg" aria-hidden="true"></div>
+
+    <header class="game-header">
+        <div class="header-brand">
+            <img src="assets/title.png" alt="Vinci Appraiser" class="header-title-img" />
+        </div>
+        <div class="header-status">
+            <span class="status-dot" style="background:#f0b840;box-shadow:0 0 8px #f0b840"></span>
+            <i class="fa-solid fa-store" aria-hidden="true"></i> Card Shop
+        </div>
+        <div class="header-score">
+            <i class="fa-solid fa-coins" aria-hidden="true"></i>
+            <span id="shop-gold" class="score-value">0 G</span>
+        </div>
+    </header>
+
+    <main class="shop-ui">
+        <div class="shop-header-row">
+            <div class="shop-title-group">
+                <h2 class="shop-title">
+                    <i class="fa-solid fa-vault" aria-hidden="true"></i> Vault Card Market
+                </h2>
+                <p class="shop-subtitle">Buy cards to appraise them — each verified card boosts your battle stats.</p>
+            </div>
+            <div class="shop-market-status">
+                <span class="market-live-dot"></span>
+                <span class="market-live-label">Live Market</span>
+                <span class="market-sep">·</span>
+                <span class="market-hint">~40% of cards carry flags</span>
+            </div>
+        </div>
+        <div id="shop-cards-grid" class="shop-cards-grid">
+            <div class="shop-loading">[ FETCHING MARKET DATA… ]</div>
+        </div>
+        <div class="shop-footer-row">
+            <div class="shop-legend">
+                <span class="legend-item legend-hint">
+                    <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                    Inspect cards to check legitimacy before buying
+                </span>
+            </div>
+            <button class="primary-btn secondary-btn" id="btn-skip-shop">
+                Back to Town <i class="fa-solid fa-door-open" aria-hidden="true"></i>
+            </button>
+        </div>
+    </main>
+</div>
+
+<!-- ═══════════════════════════════════════════ APPRAISAL VIEW ═══ -->
+<div id="game-view" class="view-container hidden">
+    <div class="scene-bg" aria-hidden="true"></div>
+
+    <header class="game-header">
+        <div class="header-brand">
+            <img src="assets/title.png" alt="Vinci Appraiser" class="header-title-img" />
+        </div>
+        <div class="header-status">
+            <span class="status-dot"></span>
+            <i class="fa-solid fa-store" aria-hidden="true"></i> Card Inspection
+        </div>
+        <div class="header-score">
+            <i class="fa-solid fa-coins" aria-hidden="true"></i>
+            <span id="score-count" class="score-value">0</span>
+        </div>
+    </header>
+
+    <main class="desk-ui">
+        <!-- LEFT: Shopkeeper + Dialogue -->
+        <div class="npc-area">
+            <div class="shopkeeper-frame">
+                <img id="shopkeeper-img" src="assets/sprite_shopkeeper/shopkeeper_talk1.png"
+                     alt="Shopkeeper" class="shopkeeper-sprite" />
+            </div>
+            <div class="shopkeeper-name">Shopkeeper</div>
+            <div class="npc-dialogue-box">
+                <p id="npc-dialogue">"A client brought this one in. Let me tell you what I know..."</p>
+            </div>
+            <!-- Bonus preview shown below dialogue -->
+            <div id="appraisal-bonus-preview" class="appraisal-bonus-preview hidden">
+                <div class="bonus-preview-label">Potential Value</div>
+                <div id="bonus-preview-content"></div>
+            </div>
+        </div>
+
+        <!-- CENTER: Card Display -->
+        <div class="card-display" id="card-display">
+            <div class="desk-item-card" id="item-card">
+                <div class="card-image-full">
+                    <img id="card-artwork-img" class="card-artwork-real" src="" alt="Card artwork" style="display:none" />
+                    <svg class="card-artwork card-artwork-svg" viewBox="0 0 160 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="160" height="240" fill="#1B1F2A"/>
+                        <radialGradient id="cglow" cx="50%" cy="40%" r="50%">
+                            <stop offset="0%" stop-color="#B08D57" stop-opacity="0.2"/>
+                            <stop offset="100%" stop-color="#1B1F2A" stop-opacity="0"/>
+                        </radialGradient>
+                        <rect width="160" height="240" fill="url(#cglow)"/>
+                        <ellipse cx="80" cy="100" rx="36" ry="48" fill="#242836" stroke="#B08D57" stroke-width="0.8" opacity="0.8"/>
+                        <circle cx="80" cy="100" r="16" stroke="#B08D57" stroke-width="1.5" fill="none"/>
+                        <path d="M80 84 L84 96 L96 100 L84 104 L80 116 L76 104 L64 100 L76 96 Z" fill="#B08D57" opacity="0.7"/>
+                    </svg>
+                </div>
+                <div class="card-grade-badge" id="card-condition">PSA 9</div>
+                <div class="card-overlay">
+                    <div class="card-overlay-name" id="card-name">Charizard VMAX</div>
+                    <div class="card-overlay-set" id="card-set">Champion's Path #74</div>
+                    <div class="card-overlay-rows">
+                        <div class="data-row">
+                            <span class="data-label">FMV</span>
+                            <span class="data-value" id="card-fmv"><span class="data-locked">● ● ●</span></span>
+                        </div>
+                        <div class="data-row">
+                            <span class="data-label">SBT</span>
+                            <span class="data-value" id="card-sbt"><span class="data-locked">● ● ●</span></span>
+                        </div>
+                        <div class="data-row">
+                            <span class="data-label">Vault</span>
+                            <span class="data-value" id="card-vault"><span class="data-locked">● ● ●</span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="stamps-layer" id="stamps-layer"></div>
+            </div>
+        </div>
+
+        <!-- RIGHT: Tools + Decision -->
+        <div class="action-panel">
+            <div class="panel-label">
+                <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                Verification Tools
+            </div>
+            <div class="tools-group">
+                <button class="tool-btn" id="btn-fmv" data-tool="fmv">
+                    <span class="tool-icon"><i class="fa-solid fa-chart-line" aria-hidden="true"></i></span>
+                    <div class="tool-text">
+                        <span class="tool-name">Query Oracle</span>
+                        <span class="tool-desc">Live FMV from Renaiss Index</span>
+                    </div>
+                    <span class="tool-status" id="status-fmv">PENDING</span>
+                </button>
+                <button class="tool-btn" id="btn-sbt" data-tool="sbt">
+                    <span class="tool-icon"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></span>
+                    <div class="tool-text">
+                        <span class="tool-name">Verify SBT</span>
+                        <span class="tool-desc">Provenance + Chain-of-Custody</span>
+                    </div>
+                    <span class="tool-status" id="status-sbt">PENDING</span>
+                </button>
+                <button class="tool-btn" id="btn-vault" data-tool="vault">
+                    <span class="tool-icon"><i class="fa-solid fa-vault" aria-hidden="true"></i></span>
+                    <div class="tool-text">
+                        <span class="tool-name">Check Multi-Sig</span>
+                        <span class="tool-desc">Vault custody threshold</span>
+                    </div>
+                    <span class="tool-status" id="status-vault">PENDING</span>
+                </button>
+            </div>
+
+            <div class="verdict-area" id="verdict-area">
+                <div class="verdict-label">Your Decision</div>
+                <div class="verdict-btns">
+                    <button class="verdict-btn accept-btn" id="btn-accept" disabled>
+                        <i class="fa-solid fa-coins" aria-hidden="true"></i> Buy Card
+                    </button>
+                    <button class="verdict-btn reject-btn" id="btn-reject" disabled>
+                        <i class="fa-solid fa-hand" aria-hidden="true"></i> Pass
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- Verdict overlay -->
+<div id="verdict-overlay" class="verdict-overlay hidden" role="alert" aria-live="polite">
+    <div class="verdict-overlay-inner" id="verdict-overlay-inner">
+        <div class="verdict-overlay-icon" id="verdict-icon"></div>
+        <div class="verdict-overlay-title" id="verdict-title"></div>
+        <div class="verdict-overlay-sub" id="verdict-sub"></div>
+        <button class="primary-btn verdict-next-btn" id="btn-next">
+            Next <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </button>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════ INVENTORY VIEW ═══ -->
+<div id="inventory-view" class="view-container hidden">
+    <div class="scene-bg" aria-hidden="true"></div>
+    <header class="game-header">
+        <div class="header-brand">
+            <img src="assets/title.png" alt="Vinci Appraiser" class="header-title-img" />
+        </div>
+        <div class="header-status">
+            <span class="status-dot" style="background:#6699ff;box-shadow:0 0 8px #6699ff"></span>
+            <i class="fa-solid fa-boxes-stacked" aria-hidden="true"></i> Inventory
+        </div>
+        <div class="header-score">
+            <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+            <span id="inv-card-count" class="score-value">0</span>
+        </div>
+    </header>
+    <main class="inventory-ui">
+        <div class="inv-header-row">
+            <h2 class="shop-title">
+                <i class="fa-solid fa-box-archive" aria-hidden="true"></i> Your Card Collection
+            </h2>
+            <p class="shop-subtitle">Verified cards grant permanent battle bonuses. Head back to fight!</p>
+        </div>
+        <div id="inventory-grid" class="shop-cards-grid"></div>
+        <div class="shop-footer-row">
+            <div></div>
+            <button class="primary-btn" id="btn-fight-again">
+                <i class="fa-solid fa-door-open" aria-hidden="true"></i> Back to Town
+            </button>
+        </div>
+    </main>
+</div>
+
+<script src="battle.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
