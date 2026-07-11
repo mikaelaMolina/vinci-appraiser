@@ -2,7 +2,7 @@
 
 **A pixel-art RPG where you fight enemies, earn gold, and inspect real collectible cards on-chain to power up.**
 
-Built for [Renaiss Tech Hackathon S1](https://renaiss.com) · [Play Live →](https://vinci.creates.works)
+Built for [Renaiss Tech Hackathon S1](https://renaiss.com) · [Play Live →](https://vinciappraiser.creates.works/)
 
 ---
 
