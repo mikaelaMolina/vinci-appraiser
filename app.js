@@ -5,7 +5,7 @@
 
 // battle.js is loaded as a separate script before this one
 
-const API = "http://localhost:3000";
+const API = window.location.hostname === "localhost" ? "http://localhost:3000" : "";
 
 /* ── Global Game State ──────────────────────────────────────────── */
 const GS = {
