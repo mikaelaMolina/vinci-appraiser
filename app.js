@@ -53,7 +53,10 @@ function shortAddr(addr) {
 
 /* ── Renaiss API ────────────────────────────────────────────────── */
 async function fetchMarketplace(limit = 20) {
-    const res = await fetch(`${API}/api/marketplace?category=POKEMON&listed=true&limit=${limit}`);
+    const url = API
+        ? `${API}/api/marketplace?category=POKEMON&listed=true&limit=${limit}`
+        : `/api/proxy?route=marketplace&category=POKEMON&listed=true&limit=${limit}`;
+    const res = await fetch(url);
     if (!res.ok) throw new Error("Marketplace fetch failed");
     const data = await res.json();
     // API returns { collection: [...] } or an array directly
@@ -494,9 +497,14 @@ async function goToShop() {
         let cards = _preloadedCards ? await _preloadedCards : null;
         _preloadedCards = null; // consume it
 
-        if (!cards) {
+        if (!cards || cards.length === 0) {
             const rawCards = await fetchMarketplace(20);
             cards = rawCards.slice(0, 12).map((c, i) => mapToAsset(c, i));
+        }
+
+        // If API returned empty, fall back to mock
+        if (!cards || cards.length === 0) {
+            cards = generateMockShopCards();
         }
 
         GS.shopCards = cards;
