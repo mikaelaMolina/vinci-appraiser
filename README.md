@@ -1,49 +1,84 @@
 # 🎮 Vinci Appraiser
 
-**A pixel-art RPG where you fight enemies, earn gold, and inspect real collectible cards on-chain to power up.**
+**A pixel-art action RPG that gamifies Web3 onboarding through real collectible card verification.**
 
-Built for [Renaiss Tech Hackathon S1](https://renaiss.com) · [Play Live →](https://vinciappraiser.creates.works/)
-
----
-
-## 🕹️ What is this?
-
-You're an adventurer in a pixel-art town. Fight in the arena to earn gold, spend it on real Pokémon TCG cards from the Renaiss marketplace, then inspect each card's on-chain credentials before buying. Equip verified cards to raise your Power Level and tackle harder arena floors.
-
-**The twist:** ~40% of cards are fake. Buying fakes debuffs your stats. You learn to spot them through three real Web3 verification checks.
+[▶️ Play Live](https://vinciappraiser.creates.works) — No wallet, no login, just open and play.
 
 ---
 
-## 🔄 Game Loop
+## What It Does
 
-```
-🏘️ Town  →  ⚔️ Arena  →  🛒 Shop  →  🏠 Home
- explore      fight &       inspect &     equip &
- the map      earn gold     buy cards     power up
-                                            ↓
-                              ← stronger each cycle ←
-```
+Vinci Appraiser turns RWA (Real-World Asset) due diligence from a compliance chore into a core gameplay mechanic. Instead of reading whitepapers to understand how on-chain verification works, players:
 
----
+1. **Fight** enemies in an arena to earn gold
+2. **Browse** real collectible cards pulled live from the Renaiss marketplace API
+3. **Inspect** each card through three on-chain checks — learning what they mean in plain language
+4. **Buy or Pass** based on the results — verified cards boost stats, fakes weaken you
+5. **Equip** cards to power up and tackle harder arena floors
 
-## ✨ Features
-
-| | Feature | Description |
-|---|---|---|
-| ⚔️ | **Arena Tower** | 5 floors with increasing difficulty. Pick your challenge based on Power Level |
-| 🛒 | **Live Card Market** | Real cards from the Renaiss API with grade-based pricing |
-| 🔍 | **On-Chain Inspection** | 3 verification checks (FMV, SBT, Vault) with educational explanations |
-| ⚡ | **Power Level** | Single number showing your strength. Rises with equipped cards |
-| 🃏 | **5 Equip Slots** | Legit cards boost stats, fake cards debuff. Choose wisely |
-| 🏘️ | **Town Overworld** | Pixel-art scrolling map with camera, collisions, and zone entry |
-| 💀 | **Death & Recovery** | Die → return to town → 10s health recovery → try again |
-| 📚 | **Learn Web3** | Each check explains what FMV oracles, SBTs, and multi-sig vaults are |
+The core insight: verification isn't boring when the verified asset makes you stronger.
 
 ---
 
-## 🏟️ Arena Floors
+## How It Connects to Renaiss Protocol
 
-| Floor | Enemies | Rec. Power | Gold Multiplier |
+Vinci Appraiser is built directly on the **Renaiss Index API**, pulling live marketplace listings so the in-game card shop is stocked with real collectible cards — not placeholders.
+
+Each card carries real data from Renaiss:
+
+| Renaiss Data | How the Game Uses It |
+|---|---|
+| Fair Market Value (`fmvPriceInUSD`) | FMV Oracle check — is the ask price reasonable? |
+| Owner Address (`ownerAddress`) | SBT Provenance check — is ownership traceable? |
+| Vault Location (`vaultLocation`) | Vault Multi-Sig check — is custody verified? |
+| PSA Grade + Grading Company | Sets shop pricing tiers and stat bonuses |
+| Card Images (`frontImageUrl`) | Displayed in shop and appraisal desk |
+| Ask Price (`askPriceInUSDT`) | Informs the in-game gold economy |
+
+### The Three Checks Model Real Renaiss Infrastructure
+
+**1. FMV Oracle** — Compares a card's price to its fair market value from the Renaiss Index, teaching players how decentralized price oracles prevent overpaying and market manipulation.
+
+**2. SBT Provenance** — Checks the owner address to show how Soulbound Tokens prove chain-of-custody. Renaiss already uses SBTs for their Community Leader identity program; this models the same concept for asset provenance.
+
+**3. Vault Multi-Sig** — Ties custody requirements to card grade, showing how RenaissOS turns independent vaults and card shops into on-chain verification nodes through cryptographic multi-signature co-signing.
+
+### Data Sources & Limitations
+
+- Card listings, images, grades, and prices come from the **live Renaiss marketplace API**
+- Pokemon TCG API is used as a **backup** when card images aren't available from Renaiss
+- The pass/fail logic for checks uses **simulated red flags** (~40% of cards) for gameplay purposes — clearly labeled as simulated data for UX demonstration
+- In a production version, checks would query actual on-chain state (SBT registry, Gnosis Safe thresholds)
+
+---
+
+## 🕹️ How to Play
+
+**No setup needed.** Open [vinciappraiser.creates.works](https://vinciappraiser.creates.works) and play.
+
+### Quick Walkthrough
+
+1. **Town** — Use WASD to move. Walk to a building and press Space/E to enter.
+2. **Arena** — Pick a floor based on your Power Level. Fight with WASD + Click/Space (attack) + Shift (dodge).
+3. **Shop** — Browse cards. Click "Inspect" to run verification checks. Buy verified cards, pass on fakes.
+4. **Home** — Equip up to 5 cards. Watch your Power Level rise. Return to the Arena for harder floors.
+
+### Controls
+
+| Key | Action |
+|---|---|
+| WASD | Move (town & battle) |
+| Click / Space | Attack |
+| Shift | Dodge Roll (i-frames) |
+| E | Card Ability / Enter Building |
+
+---
+
+## ⚔️ Game Systems
+
+### Arena Tower (5 Floors)
+
+| Floor | Enemies | Recommended PWR | Gold Multiplier |
 |---|---|---|---|
 | 1 — Rats | 🐀🐀 | 70 | x1.0 |
 | 2 — Dealers | 🕵️🐀 | 100 | x1.3 |
@@ -51,66 +86,39 @@ You're an adventurer in a pixel-art town. Fight in the arena to earn gold, spend
 | 4 — Forgers | 🖨️🕵️💻 | 220 | x2.0 |
 | 5 — Shadow Broker | 🦹🖨️💻 | 320 | x3.0 |
 
----
+### Power Level
 
-## 💰 Card Pricing
+```
+Power = Total HP + (Total ATK × 3) + (Total DEF × 2)
+```
 
-| Grade | Price | Legit Bonus | Fake Penalty |
+Base stats (no cards): 50 HP, 8 ATK, 1 DEF = **76 PWR**. Each equipped card raises this.
+
+### Card Economy
+
+| Grade | Shop Price | If Legit | If Fake |
 |---|---|---|---|
 | PSA 10 | 500–800G | +60 HP, +30 ATK, +10 DEF | -20 HP, -15 ATK, -5 DEF |
 | PSA 9 | 250–450G | +54 HP, +27 ATK, +9 DEF | -18 HP, -13 ATK, -4 DEF |
 | PSA 8 | 120–220G | +48 HP, +24 ATK, +8 DEF | -16 HP, -12 ATK, -4 DEF |
 | PSA 7 | 60–120G | +42 HP, +21 ATK, +7 DEF | -14 HP, -10 ATK, -3 DEF |
 
----
+### Death & Recovery
 
-## 🔍 The Three Checks
-
-Each card goes through three on-chain verification steps:
-
-**1. FMV Oracle** — Is the asking price within 2.5x of fair market value?  
-**2. SBT Provenance** — Does a Soul-Bound Token prove ownership history?  
-**3. Vault Multi-Sig** — Have enough custodians signed off on physical custody?
-
-After each check, an explanation teaches you what it means and why it matters.
-
----
-
-## 🎯 How Power Level Works
-
-```
-Power = Total HP + (Total ATK × 3) + (Total DEF × 2)
-```
-
-- **No cards equipped:** 50 HP + 8 ATK + 1 DEF = **76 PWR**
-- Floor selection shows green ✅ if you're ready, red 💀 if underpowered
-- Each equipped card raises your power — smart purchases matter
-
----
-
-## 🌐 Web3 Concepts Modeled
-
-| In-Game | Real World |
-|---|---|
-| FMV Oracle check | Price oracle (Chainlink / Renaiss Index) |
-| SBT provenance | Soulbound Token — proof of ownership |
-| Vault multi-sig | Gnosis Safe threshold signing |
-| Buying a card | RWA tokenization |
-| Passing on fakes | Compliance gate / due diligence |
-| Power Level | On-chain reputation score |
-| Fake card debuffs | Penalty for unverified assets |
+Die in the arena → return to town → 10-second health recovery → try again. No permadeath, just a cooldown.
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Frontend:** Vanilla HTML/CSS/JS (no framework)
-- **Rendering:** HTML5 Canvas at 60fps (battle + town)
-- **Sprites:** Custom pixel-art PNG sheets (player, 5 enemies, shopkeeper)
-- **Fonts:** Press Start 2P, Playfair Display, IBM Plex Mono
-- **API:** Renaiss Marketplace via Node.js proxy
-- **Fallback:** Pokemon TCG API for card images
-- **Deploy:** Vercel (static + serverless)
+| Layer | Technology |
+|---|---|
+| Frontend | Vanilla HTML/CSS/JS — no framework, zero dependencies |
+| Rendering | HTML5 Canvas at 60fps (battle + town overworld) |
+| Sprites | Custom pixel-art PNGs (player, 5 enemy types, shopkeeper) |
+| API | Renaiss Marketplace REST API via Node.js proxy |
+| Fallback | Pokemon TCG API for card images |
+| Deploy | Vercel (static + serverless) |
 
 ---
 
@@ -118,37 +126,50 @@ Power = Total HP + (Total ATK × 3) + (Total DEF × 2)
 
 ```bash
 cd vinci-appraiser
-node server.js          # API proxy on port 3000
-npx serve .             # Static server on port 3000 (or python3 -m http.server 8080)
+node server.js        # API proxy on port 3000
 ```
 
-Open `http://localhost:3000` — if the Renaiss API is down, mock data kicks in automatically.
+Open `http://localhost:3000`. If the Renaiss API is unreachable, mock data with pre-configured red flags kicks in automatically.
 
 ---
 
 ## 📁 Project Structure
 
 ```
-├── index.html       # Single-page app (all views)
-├── style.css        # Full design system
-├── app.js           # Game logic (town, shop, appraisal, inventory)
-├── battle.js        # Combat engine (canvas, sprites, physics)
-├── server.js        # API proxy (Renaiss CLI wrapper)
+├── index.html       # Single-page app (landing, town, battle, shop, appraisal, inventory)
+├── style.css        # Full design system (pixel aesthetic)
+├── app.js           # Game controller (town, shop, appraisal, inventory, economy)
+├── battle.js        # Combat engine (canvas, sprites, physics, XP)
+├── server.js        # Node.js proxy wrapping Renaiss CLI
 ├── vercel.json      # Deployment config
 ├── api/proxy.js     # Serverless function for Vercel
-└── assets/          # Sprites, backgrounds, title art
+└── assets/          # Sprites, backgrounds, title art, favicon
 ```
 
 ---
 
 ## 🗺️ Roadmap
 
-| Phase | What's Next |
+| Phase | Description |
 |---|---|
-| ✅ Current | Town, arena floors, card market, educational appraisal, power system |
-| 🔜 Next | Real SBT registry lookup, Gnosis Safe integration |
-| 🔮 Future | RWA mint transactions, PvP leaderboards, mobile PWA |
+| ✅ Done | Live API integration, town overworld, arena floors, educational appraisal, power system |
+| 🔜 Next | Real SBT registry lookups, Gnosis Safe multi-sig queries |
+| 🔮 Future | In-game purchase triggers actual RWA mint on Vinci World smart contract |
 
 ---
 
-Built by **Mikaela** for Renaiss Tech Hackathon S1
+## Why This Design
+
+The old approach to teaching Web3 verification — docs, diagrams, test transactions — doesn't stick. People learn by doing, especially when there are consequences.
+
+In Vinci Appraiser:
+- **Buying a fake card hurts you** (stat debuffs) — so you're motivated to check
+- **Each check explains itself** — educational popups teach the concept in plain language
+- **Real data makes it feel real** — actual marketplace cards, not Lorem Ipsum placeholders
+- **Progressive difficulty** — you need better cards to reach higher floors, which means better verification skills
+
+The game is designed as an entry point into the Renaiss ecosystem for people who aren't already crypto-native.
+
+---
+
+Built by Mikaela · [Live Demo](https://vinciappraiser.creates.works) · [GitHub](https://github.com/mikaelaMolina/vinci-appraiser)
